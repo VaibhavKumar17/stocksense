@@ -418,12 +418,27 @@ export default function Dashboard({ onNavigateToStriker }) {
 
       {/* Offline banner */}
       {backendOk === false && (
-        <div style={{ background: 'rgba(220,38,38,0.07)', border: '1px solid rgba(220,38,38,0.2)', borderRadius: '12px', padding: '12px 18px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#dc2626', flexShrink: 0, display: 'block' }} />
-          <span style={{ fontSize: '13px', color: '#dc2626', fontWeight: 600 }}>Backend offline —</span>
-          <code style={{ fontSize: '12px', color: '#5C4033', fontFamily: 'JetBrains Mono, monospace' }}>cd backend && python -m uvicorn main:app --reload</code>
+        <div style={{
+          background: 'rgba(217, 119, 6, 0.08)',
+          border: '1px solid rgba(217, 119, 6, 0.25)',
+          borderRadius: '12px',
+          padding: '12px 18px',
+          marginBottom: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px'
+        }}>
+          <span className="pulse-dot amber" style={{ flexShrink: 0 }} />
+          <span style={{ fontSize: '13px', color: '#d97706', fontWeight: 600 }}>
+            Connecting to live market server...
+          </span>
+          <span style={{ fontSize: '11px', color: '#8B7355', marginLeft: 'auto' }}>
+            Retrying automatically. Please check your connection.
+          </span>
         </div>
       )}
+
+
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '24px' }}>

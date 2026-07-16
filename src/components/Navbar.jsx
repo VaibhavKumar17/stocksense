@@ -133,7 +133,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
                 ? t.simPrice.toLocaleString('en-IN', { maximumFractionDigits: 0 })
                 : t.simPrice.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
               return (
-                <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', fontSize: '11px', padding: '0 20px', borderRight: '1px solid rgba(139,90,43,0.06)', whiteSpace: 'nowrap' }}>
+                <span key={i} className="ticker-item">
                   <span style={{ color: '#8B7355', fontWeight: 600, fontFamily: 'JetBrains Mono, monospace', fontSize: '10px' }}>{t.symbol}</span>
                   <span style={{
                     color: priceColor,

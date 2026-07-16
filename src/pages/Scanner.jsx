@@ -78,7 +78,7 @@ function ScanRow({ item, rank, onSelect, selected }) {
       onMouseLeave={e => !isSelected && (e.currentTarget.style.background = 'transparent')}
     >
       {/* Rank */}
-      <td style={{ padding: '13px 14px', width: '40px' }}>
+      <td className="col-rank" style={{ padding: '13px 14px', width: '40px' }}>
         <span style={{ fontSize: '12px', fontWeight: 700, color: rank <= 3 ? '#d97706' : '#A0937D', fontFamily: 'JetBrains Mono, monospace' }}>
           {rank <= 3 ? ['🥇','🥈','🥉'][rank-1] : `#${rank}`}
         </span>
@@ -94,7 +94,7 @@ function ScanRow({ item, rank, onSelect, selected }) {
         {item.sector && <div style={{ fontSize: '10px', color: '#A0937D', marginTop: '2px' }}>{item.sector}</div>}
       </td>
       {/* Price */}
-      <td style={{ padding: '13px 8px', fontFamily: 'JetBrains Mono, monospace' }}>
+      <td className="col-price" style={{ padding: '13px 8px', fontFamily: 'JetBrains Mono, monospace' }}>
         {item.current_price > 0 ? (
           <div>
             <div style={{ fontSize: '13px', fontWeight: 700, color: '#1C1410' }}>₹{Number(item.current_price).toLocaleString('en-IN')}</div>
@@ -124,7 +124,7 @@ function ScanRow({ item, rank, onSelect, selected }) {
         {item.capital_required ? `₹${Number(item.capital_required).toLocaleString('en-IN')}` : '—'}
       </td>
       {/* Confidence bar */}
-      <td style={{ padding: '13px 14px', minWidth: '100px' }}>
+      <td className="col-conf" style={{ padding: '13px 14px', minWidth: '100px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <div className="progress-bar" style={{ flex: 1 }}>
             <div className="progress-fill" style={{ width: `${conf}%`, background: isBull ? '#16a34a' : isBear ? '#dc2626' : '#A0937D' }} />
@@ -249,7 +249,7 @@ function CapitalPrompt({ onConfirm }) {
   const [capital, setCapital] = useState('');
 
   return (
-    <div style={{ maxWidth: '480px', margin: '80px auto', padding: '0 24px' }}>
+    <div className="capital-prompt-container">
       <div className="glass-card" style={{ padding: '32px', textAlign: 'center' }}>
         <div style={{ width: '56px', height: '56px', borderRadius: '14px', background: 'rgba(139,90,43,0.1)', border: '1px solid rgba(139,90,43,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
           <Wallet size={26} color="#8B5A2B" />
@@ -482,13 +482,13 @@ export default function Scanner() {
             <table className="data-table" style={{ width: '100%' }}>
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th className="col-rank">#</th>
                   <th>Symbol</th>
-                  <th>Price</th>
+                  <th className="col-price">Price</th>
                   <th>Strike</th>
                   <th>Premium</th>
                   <th>Capital</th>
-                  <th>Confidence</th>
+                  <th className="col-conf">Confidence</th>
                   <th></th>
                 </tr>
               </thead>

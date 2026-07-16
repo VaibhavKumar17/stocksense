@@ -28,13 +28,13 @@ function OptionChainTable({ data }) {
       <table className="data-table">
         <thead>
           <tr>
-            <th style={{ color: '#16a34a', textAlign: 'right' }}>CE OI</th>
-            <th style={{ color: '#16a34a', textAlign: 'right' }}>CE IV</th>
+            <th className="col-oi" style={{ color: '#16a34a', textAlign: 'right' }}>CE OI</th>
+            <th className="col-iv" style={{ color: '#16a34a', textAlign: 'right' }}>CE IV</th>
             <th style={{ color: '#16a34a', textAlign: 'right' }}>CE Prem</th>
             <th style={{ textAlign: 'center', background: 'rgba(139,90,43,0.05)' }}>STRIKE</th>
             <th style={{ color: '#dc2626' }}>PE Prem</th>
-            <th style={{ color: '#dc2626' }}>PE IV</th>
-            <th style={{ color: '#dc2626' }}>PE OI</th>
+            <th className="col-iv" style={{ color: '#dc2626' }}>PE IV</th>
+            <th className="col-oi" style={{ color: '#dc2626', textAlign: 'right' }}>PE OI</th>
           </tr>
         </thead>
         <tbody>
@@ -42,15 +42,15 @@ function OptionChainTable({ data }) {
             const isAtm = row.strike === atm.strike;
             return (
               <tr key={i} className={isAtm ? 'atm-row' : ''}>
-                <td style={{ textAlign: 'right', color: '#8B7355' }}>{(row.ce_oi || 0).toLocaleString()}</td>
-                <td style={{ textAlign: 'right', color: '#8B7355' }}>{row.ce_iv || '-'}</td>
+                <td className="col-oi" style={{ textAlign: 'right', color: '#8B7355' }}>{(row.ce_oi || 0).toLocaleString()}</td>
+                <td className="col-iv" style={{ textAlign: 'right', color: '#8B7355' }}>{row.ce_iv || '-'}</td>
                 <td style={{ textAlign: 'right', color: '#16a34a', fontWeight: 600 }}>₹{Number(row.ce_ltp || 0).toFixed(2)}</td>
                 <td style={{ textAlign: 'center', fontWeight: 700, color: isAtm ? '#8B5A2B' : '#1C1410', background: 'rgba(139,90,43,0.04)' }}>
                   {isAtm && <span style={{ color: '#8B5A2B', marginRight: '3px' }}>●</span>}{row.strike}
                 </td>
                 <td style={{ color: '#dc2626', fontWeight: 600 }}>₹{Number(row.pe_ltp || 0).toFixed(2)}</td>
-                <td style={{ color: '#8B7355' }}>{row.pe_iv || '-'}</td>
-                <td style={{ color: '#8B7355' }}>{(row.pe_oi || 0).toLocaleString()}</td>
+                <td className="col-iv" style={{ color: '#8B7355' }}>{row.pe_iv || '-'}</td>
+                <td className="col-oi" style={{ color: '#8B7355', textAlign: 'right' }}>{(row.pe_oi || 0).toLocaleString()}</td>
               </tr>
             );
           })}
@@ -125,7 +125,7 @@ function CapitalPrompt({ preselected, onConfirm }) {
   const isBear = preselected?.signal === 'bearish';
 
   return (
-    <div style={{ maxWidth: '480px', margin: '80px auto', padding: '0 24px' }}>
+    <div className="capital-prompt-container">
       <div className="glass-card" style={{ padding: '32px', textAlign: 'center' }}>
         {/* Icon */}
         <div style={{ width: '56px', height: '56px', borderRadius: '14px', background: 'rgba(139,90,43,0.1)', border: '1px solid rgba(139,90,43,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
@@ -399,11 +399,12 @@ export default function Striker({ preselected }) {
 
           {/* Left picks list (only in full-scan mode) */}
           {!activePreselected && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
-              <div style={{ fontSize: '11px', fontWeight: 600, color: '#A0937D', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <div>
+              <div style={{ fontSize: '11px', fontWeight: 600, color: '#A0937D', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <Activity size={11} /> AI Picks ({allPicks.length})
               </div>
-              {allPicks.map((pick, i) => {
+              <div className="picks-list-container">
+                {allPicks.map((pick, i) => {
                 const isB = pick.signal === 'bullish';
                 const isSel = selected?.symbol === pick.symbol;
                 return (
@@ -429,6 +430,7 @@ export default function Striker({ preselected }) {
                   </button>
                 );
               })}
+              </div>
             </div>
           )}
 

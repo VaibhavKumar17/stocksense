@@ -666,6 +666,31 @@ select.ticker-input option {
   flex-wrap: wrap;
 }
 
+/* --- Capital Prompt Container --- */
+.capital-prompt-container {
+  max-width: 480px;
+  margin: 80px auto;
+  padding: 0 24px;
+}
+
+/* --- Picks List Container --- */
+.picks-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* --- Ticker Item --- */
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  padding: 0 20px;
+  border-right: 1px solid rgba(139,90,43,0.06);
+  white-space: nowrap;
+}
+
 /* --- Table horizontal scroll wrapper --- */
 .table-scroll {
   overflow-x: auto;
@@ -717,6 +742,17 @@ select.ticker-input option {
   .navbar-right .clock-label-short {
     display: block !important;
   }
+  .picks-list-container {
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 8px 4px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .picks-list-container button {
+    flex: 0 0 240px;
+  }
 }
 
 /* === MOBILE (≤ 640px) === */
@@ -741,7 +777,12 @@ select.ticker-input option {
   /* Hide less-critical table columns on mobile */
   .data-table .col-strength,
   .data-table .col-trigger,
-  .data-table .col-sector {
+  .data-table .col-sector,
+  .data-table .col-oi,
+  .data-table .col-iv,
+  .data-table .col-rank,
+  .data-table .col-price,
+  .data-table .col-conf {
     display: none;
   }
   /* Make table rows more touch-friendly */
@@ -771,6 +812,17 @@ select.ticker-input option {
   .tab-item {
     padding: 7px 10px;
     font-size: 12px;
+  }
+  .capital-prompt-container {
+    margin: 20px auto;
+    padding: 0 12px;
+  }
+  .capital-prompt-container .glass-card {
+    padding: 24px 16px !important;
+  }
+  .ticker-item {
+    padding: 0 10px;
+    font-size: 10px;
   }
 }
 
